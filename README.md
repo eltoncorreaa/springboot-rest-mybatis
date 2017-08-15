@@ -1,5 +1,5 @@
 # spring-boot-mybatis
-A simple Spring-Boot rest application with mybatis using annotation
+A simple Spring-Boot rest application with mybatis using annotation, and integration test with cucumber.
 
 To run: 
 
@@ -19,3 +19,4 @@ Endpoints
 #### TODO
 * update database properties in application.properties (main and test)
 * implement internacionalization
+* implement default rollback in tests integration with cucumber
