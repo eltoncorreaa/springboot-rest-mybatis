@@ -1,10 +1,9 @@
-package com.elton.app.service.impl;
+package com.elton.app.service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +14,6 @@ import com.elton.app.exception.MultipleTaskException;
 import com.elton.app.exception.TaskException;
 import com.elton.app.mapper.TaskMapper;
 import com.elton.app.model.Task;
-import com.elton.app.service.TaskService;
 
 @Transactional(readOnly = true)
 @Service
@@ -90,7 +88,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	private void validateName(final TaskDTO taskDTO, final ArrayList<TaskException> errors) {
-		if (StringUtils.isBlank(taskDTO.getName())) {
+		if (taskDTO.getName().isEmpty()) {
 			errors.add(new TaskException(NOME_OBRIGATORIO));
 		}
 	}

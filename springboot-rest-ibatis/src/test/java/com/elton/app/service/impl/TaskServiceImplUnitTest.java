@@ -12,6 +12,7 @@ import com.elton.app.converter.TaskConverter;
 import com.elton.app.dto.TaskDTO;
 import com.elton.app.mapper.TaskMapper;
 import com.elton.app.model.Task;
+import com.elton.app.service.TaskServiceImpl;
 import com.elton.app.utils.factory.TaskMother;
 
 @RunWith(MockitoJUnitRunner.class)

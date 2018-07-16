@@ -7,23 +7,15 @@ import com.elton.app.support.CustomDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class TaskDTO extends AbstractDTO {
 
 	private String name;
 	@JsonSerialize(using = CustomDateSerializer.class)
 	@JsonDeserialize(using = CustomDateDeserializer.class)
 	private Date startDate;
-
-	public String getName() {
-		return name;
-	}
-	public void setName(final String name) {
-		this.name = name;
-	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(final Date startDate) {
-		this.startDate = startDate;
-	}
 }
