@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Options.FlushCachePolicy;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.elton.app.model.Task;
@@ -26,7 +25,6 @@ public interface TaskMapper {
 	List<Task> findAll();
 
 	@Insert("INSERT into TASK(id, name, startDate, version, creationTime) VALUES(#{id}, #{name}, #{startDate}, 0, CURRENT_TIMESTAMP)")
-	@SelectKey(statement="SELECT TASK_SEQUENCE.NEXTVAL FROM DUAL", keyProperty="id", before=true, resultType=Long.class)
 	@Options(flushCache=FlushCachePolicy.DEFAULT)
 	Long insert(Task task);
 

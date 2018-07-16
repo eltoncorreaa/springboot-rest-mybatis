@@ -4,15 +4,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elton.app.dto.TaskDTO;
@@ -20,7 +20,7 @@ import com.elton.app.service.TaskService;
 import com.elton.app.util.Error;
 import com.elton.app.util.TaskExceptionHandler;
 
-@RequestMapping("/task")
+
 @CrossOrigin
 @RestController
 public class TaskController {
@@ -28,7 +28,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
-	@RequestMapping(method = RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/api/v1/tasks")
 	public ResponseEntity<?> listAll(@RequestParam final Map<String, String> params){
 		try {
 			return new ResponseEntity<>(taskService.findAll(), HttpStatus.OK);
@@ -37,7 +37,7 @@ public class TaskController {
 		}
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/api/v1/expenses/{id}")
 	public ResponseEntity<?> get(@PathVariable final Long id){
 		try {
 			final TaskDTO dto = taskService.findById(id);
@@ -47,8 +47,7 @@ public class TaskController {
 		}
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.POST , consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("/api/v1/expenses")
 	public ResponseEntity<?> save(@RequestBody final TaskDTO dto){
 		try {
 			final TaskDTO inserted= taskService.persist(dto);
@@ -58,8 +57,7 @@ public class TaskController {
 		}
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping("/api/v1/expenses")
 	public ResponseEntity<?> update(@RequestBody final TaskDTO dto){
 		try {
 			final TaskDTO updated= taskService.merge(dto);
@@ -69,7 +67,7 @@ public class TaskController {
 		}
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE , produces=MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping("/api/v1/expenses/{id}")
 	public void delete(@PathVariable final Long id){
 		taskService.delete(id);
 	}
