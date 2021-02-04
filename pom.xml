@@ -9,7 +9,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot-rest-ibatis</name>
+	<name>springboot-rest-mybatis</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
